@@ -18,10 +18,62 @@ function getDOMElements() {
     enableListeners();
 }
 
+const addErrors = function (type) { 
+    type.input.classList.add('has-error');
+    type.label.classList.add('has-error');
+}
+
+const removeErrors = function (type) {
+    type.input.classList.remove('has-error');
+    type.label.classList.remove('has-error');
+    type.errorMeassage.innerHTML = '';
+ }
+
+const doubleCheckEmail = function () { 
+    if (cheker(email)) {
+        removeErrors(email);
+        email.input.removeEventListener('input', doubleCheckEmail);
+    }
+}
+
+const doubleCheckPassword = function () { 
+    if (cheker(password)) {
+        removeErrors(password);
+        password.input.removeEventListener('input', doubleCheckPassword);
+    }
+}
+
+const cheker = function (type) { 
+    value = type.input.value;
+    if (value == '') {
+        addErrors(type);
+        type.errorMeassage.innerHTML = 'This field is required';
+        return false;
+    } else if (type == email && !isValidEmailAddress(value)) {
+        addErrors(type);
+        type.errorMeassage.innerHTML = 'Invalid emailaddress';
+        return false;
+    } else if (type == password && !isValidPassword(value)) {
+        addErrors(type);
+        type.errorMeassage.innerHTML = 'Invalid password';
+        return false;
+    } else {
+        return true;
+    }
+}
+
 const isValidEmailAddress = function(emailAddress) {
     // Basis manier om e-mailadres te checken.
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailAddress);
 };
+
+const isValidPassword = function(password) {
+    if (password.length > 1) { 
+        return true;
+    } else {
+        return false;
+    }
+}
 
 function enableListeners() {
     blurListenerEmail();
@@ -31,32 +83,20 @@ function enableListeners() {
 
 function blurListenerEmail() {
     email.input.addEventListener('blur', function () {
-        if (email.input.value == '') {
-            email.errorMeassage.innerHTML = 'This field is required';
-            email.input.classList.add('has-error');
-            email.label.classList.add('has-error');
-        } else if (!isValidEmailAddress(email.input.value)) {
-            email.errorMeassage.innerHTML = 'Please enter a valid email address';
-            email.input.classList.add('has-error');
-            email.label.classList.add('has-error');
+        if(!cheker(email)) {
+            email.input.addEventListener('input', doubleCheckEmail);
         } else {
-            email.errorMeassage.innerHTML = '';
-            email.input.classList.remove('has-error');
-            email.label.classList.remove('has-error');
+            removeErrors(email);
         }
     });
 }
 
 function blurListenerPassword() {
     password.input.addEventListener('blur', function () {
-        if (password.input.value == '') {
-            password.errorMeassage.innerHTML = 'This field is required';
-            password.input.classList.add('has-error');
-            password.label.classList.add('has-error');
+        if(!cheker(password)) {
+            password.input.addEventListener('input', doubleCheckPassword);
         } else {
-            password.errorMeassage.innerHTML = '';
-            password.input.classList.remove('has-error');
-            password.label.classList.remove('has-error');
+            removeErrors(password);
         }
     });
 }
