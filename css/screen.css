@@ -78,6 +78,9 @@
     --global-input-focus-borderColor: var(--global-color-alpha);
     --global-input-focus-boxShadowColor: var(--global-color-alpha-x-transparent);
     --global-input-focus-boxShadow: 0 0 0 3px var(--global-input-focus-boxShadowColor);
+
+    --pasword-icon-hide: none;
+    --pasword-icon-show: block;
 }
 
 /*------------------------------------*\
@@ -949,6 +952,39 @@ more padding on the right to avoid overlap
     Password toggle custom checkbox
 */
 
+.c-toggle-password__checkbox + .c-toggle-password__label{
+    --pasword-icon-hide: none;
+    --pasword-icon-show: block;
+}
+
+.c-toggle-password__checkbox:checked + .c-toggle-password__label{
+    --pasword-icon-hide: block;
+    --pasword-icon-show: none;
+}
+
+.c-toggle-password-container {
+    position: relative;
+}
+
+.c-toggle-password__label {
+    position: absolute;
+    top: 28%;
+    right: 4%;
+}
+
+.c-toggle-password__icon--hide {
+    fill: var(--global-color-neutral-light);
+    display: var(--pasword-icon-hide);
+    width: 20px;
+    margin: auto;
+}
+
+.c-toggle-password__icon--show {
+    fill: var(--global-color-neutral-light);
+    display: var(--pasword-icon-show);
+    width: 20px;
+    margin: auto;
+}
 
 /*------------------------------------*\
 #UTILITIES
