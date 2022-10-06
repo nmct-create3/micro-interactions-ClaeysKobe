@@ -619,6 +619,10 @@ input::placeholder {
     Everything form related here
 */
 
+.c-form-field .c-form-field__label{
+    position: absolute;
+}
+
 .c-form-field--option {
     display: flex;
     align-items: center;
@@ -628,6 +632,10 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.c-form-field:focus-within .c-label-floating {
+    transform: translateY(-24px);
 }
 
 /*
@@ -699,6 +707,7 @@ more padding on the right to avoid overlap
 */
 
 .c-label {
+    /* position: absolute; */
     color: var(--label-color, var(--global-color-neutral-xx-dark));
     /* --label-color: var(--global-color-neutral-xx-dark); */
     margin-bottom: 0;
@@ -710,6 +719,18 @@ more padding on the right to avoid overlap
 
 .c-label--option {
     padding-bottom: 0;
+}
+
+.c-label--flow {
+    position: absolute;
+    top: 12px;
+    left: 8px;
+    padding: 4px 8px;
+    will-change: transform;
+    transform: translateY( 0 );
+    transition: transform 200ms ease-in-out;
+    box-shadow: 0 0 4px 4px rgba(255,255,255,0.8);
+    background: white;
 }
 
 /*
