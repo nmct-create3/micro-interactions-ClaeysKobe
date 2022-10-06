@@ -79,8 +79,8 @@
     --global-input-focus-boxShadowColor: var(--global-color-alpha-x-transparent);
     --global-input-focus-boxShadow: 0 0 0 3px var(--global-input-focus-boxShadowColor);
 
-    --pasword-icon-hide: none;
-    --pasword-icon-show: block;
+    --global-input-error-borderColor: red;
+    --global-color-error: red;
 }
 
 /*------------------------------------*\
@@ -624,18 +624,30 @@ input::placeholder {
     align-items: center;
 }
 
+.c-form-field__label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 /*
     Component: Input
     ---
     Class to put on all input="text" like form inputs
 */
 
+.has-error {
+    --label-color: var(--global-color-error);
+    --input-borderColor: var(--global-input-error-borderColor);
+  }
+
 .c-input {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     width: 100%;
-    border: 1px solid var(--global-input-borderColor);
+    /* border: 1px solid var(--global-input-borderColor); */
+    border: var(--global-borderWidth) solid var(--input-borderColor, var(--global-input-borderColor));
     /* border: 1px solid var(--global-color-neutral-xxx-light); */
     border-radius: var(--global-borderRadius);
     background-color: var(--global-input-backgroundColor);
@@ -656,6 +668,13 @@ input::placeholder {
 .c-input:active {
     border-color: var(--global-input-focus-borderColor);
     box-shadow: var(--global-input-focus-boxShadow);
+}
+
+.c-error-message {
+    font-size: 14px;
+    color: red;
+    font-weight: 600;
+    padding-bottom: var(--global-whitespace-sm);
 }
 
 /*
@@ -680,7 +699,8 @@ more padding on the right to avoid overlap
 */
 
 .c-label {
-    --label-color: var(--global-color-neutral-xx-dark);
+    color: var(--label-color, var(--global-color-neutral-xx-dark));
+    /* --label-color: var(--global-color-neutral-xx-dark); */
     margin-bottom: 0;
     padding-bottom: var(--global-whitespace-sm);
     font-size: 14px;
