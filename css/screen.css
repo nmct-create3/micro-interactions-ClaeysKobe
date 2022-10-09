@@ -723,6 +723,7 @@ more padding on the right to avoid overlap
 
 .c-label--flow {
     position: absolute;
+    z-index: 10000;
     top: 12px;
     left: 8px;
     padding: 4px 8px;
@@ -964,6 +965,72 @@ more padding on the right to avoid overlap
 .c-option--hidden:checked+.c-custom-toggle:active .c-custom-toggle__fake-input::after {
     margin-left: -6px;
 }
+
+
+/*
+    Component: Like Button
+    ---
+    Like Button
+*/
+
+.c-toggle-like__icon {
+    width: 24px;
+    fill: var(--global-color-neutral-x-light);
+}
+
+.c-toggle-like__checkbox:checked + .c-toggle-like__label > .c-toggle-like__icon {
+    animation: rotate 0.5s cubic-bezier(.33,.6,.81,.63);
+    width: 28px;
+    fill: #D80027;
+}   
+
+.c-toggle-like__checkbox + .c-toggle-like__label > .c-toggle-like__icon {
+    animation: rotateback 0.5s cubic-bezier(.33,.6,.81,.63);
+}
+
+@keyframes rotate{
+    0%{
+        transform: rotate(0deg);
+    }
+    50%{
+        transform: rotate(180deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotateback{
+    0%{
+        transform: rotate(360deg);
+    }
+    50%{
+        transform: rotate(180deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
+
+/* @keyframes bounce{
+    0%{
+        transform: scale(100%);
+    }
+    50%{
+        transform: scale(150%);
+    }
+    100%{
+        transform: scale(100%);
+    }
+} */
+
+/* @keyframes bounce {
+    0%   { transform: scale(1,1)    translateY(0); }
+    10%  { transform: scale(1.1,.9) translateY(0); }
+    30%  { transform: scale(.9,1.1) translateY(-100px); }
+    50%  { transform: scale(1,1)    translateY(0); }
+    100% { transform: scale(1,1)    translateY(0); }
+} */
 
 /*
     Component: Custom Select
