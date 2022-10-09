@@ -135,9 +135,24 @@ function handlePasswordSwitcher() {
     */
 }
 
+const cardTransform = function () {
+  var card = document.getElementsByClassName('js-card');
+
+  document.addEventListener("mousemove", function(e) {  
+    var ax = -(window.innerWidth/2- e.pageX)/20;
+    var ay = (window.innerHeight/2- e.pageY)/10;
+    document.getElementById("js-cards").style.transform = "rotateY("+ax+"deg) rotateX("+ay+"deg)"; 
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Script loaded!");
+  let cardPage = document.querySelector(".js-cardPage");
+  if (cardPage) { 
+    cardTransform();
+  }
   getDOMElements();
   handleFloatingLabel();
   handlePasswordSwitcher();
+
 });

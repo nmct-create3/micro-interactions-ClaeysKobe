@@ -583,6 +583,40 @@ input::placeholder {
     overflow: hidden;
 }
 
+.c-card {
+    margin-right: 40px;
+    pointer-events: none;
+    transform: translateZ(0);
+    padding: 30px;
+    background: white;
+    border-radius: 5px;
+    width: 400px;
+    height: 200px;
+    margin: auto;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    display: flex;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+    position: relative;
+}
+
+.card:after {
+    content: " ";
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    border-radius: 50%;
+    left: 0;
+    bottom: -50px;
+    box-shadow: 0 30px 20px rgba(0, 0, 0, .3);
+}
+
+.card .card-content {
+    margin: auto;
+    text-align: center;
+    transform-style: preserve-3d;
+}
+
 /* Add padding to child for more flexibility */
 .c-card__body,
 .c-card__footer {
@@ -1031,6 +1065,7 @@ more padding on the right to avoid overlap
     50%  { transform: scale(1,1)    translateY(0); }
     100% { transform: scale(1,1)    translateY(0); }
 } */
+
 
 /*
     Component: Custom Select
